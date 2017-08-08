@@ -1,0 +1,21 @@
+{{#partial "content"}}
+
+<h1>Welcome to the Epicodus Album Storage Experience (EASE)</h1>
+
+<p>Add a new Album:</p>
+<a href="/posts/add">
+  <button class="btn btn-default">Add</button></a>
+
+<p>See all the Albums:</p>
+<form action="/posts/view" method="POST">
+  <button type="submit" class="btn btn-default">View</button>
+</form>
+
+<p>Delete an Album:</p>
+<form action="/posts/delete" method="POST">
+  <button type="submit" class="btn btn-default">Delete</button>
+</form>
+
+{{/partial}}
+
+{{> layout.hbs}}
