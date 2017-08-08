@@ -15,14 +15,20 @@ public class App {
         staticFileLocation("/public");
 
         get("/", (request, response) -> {
+            System.out.println("hello");
             Map<String,Object> model = new HashMap<String, Object>();
+            ArrayList<Tracker> trackers = Tracker.getAll();
+
+            model.put("albumInfo",trackers);
+
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/success", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            String formInput = request.queryParams("formInput");
-            Tracker newTracker = new Tracker(formInput);
+            String albumInfo = request.queryParams("album"); //""
+            System.out.println();
+            Tracker newTracker = new Tracker(albumInfo);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -31,13 +37,12 @@ public class App {
             return new ModelAndView(model, "form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get ("/view", (request, response) -> {
-            Map<String,Object>model = new HashMap<>();
-            ArrayList<Tracker> trackers = Tracker.getAll();
-            model.put("instances",trackers);
+//        get ("/view", (request, response) -> {
+//            Map<String,Object>model = new HashMap<String, Object>();
+//
+//            return new ModelAndView(model, "index.hbs");
+//        },   new HandlebarsTemplateEngine());
 
-            return new ModelAndView(model, "view.hbs");
-        },   new HandlebarsTemplateEngine());
 //        post("/success", (request, response) -> {
 //            Map<String,Object> model = new HashMap<String, Object>();
 //            return new ModelAndView(model, "success.hbs");
